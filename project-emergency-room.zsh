@@ -1,0 +1,1 @@
+alias er='~/Working/projects/emergency-room/'$ofFolder'/apps/myApps/emergencyroom'
