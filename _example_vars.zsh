@@ -7,3 +7,9 @@
 # expected:
 
 # ofFolder='of097'
+# ipMask='192.168.1.10' #(the final character is missing from the mask)
+# port='1002'
+# sshPhrase='mypassword'
+# osxUser='myusername'
+# piUser='piusername'
+# numPis=5
