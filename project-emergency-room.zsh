@@ -39,7 +39,7 @@ eval "alias cpi=\""$erCpiCmd"\"" #echo "alias cpi=\""$erCpiCmd"\""
 
 # ==============================================================================
 # Command:    rpi
-# Stands For: Retstart all Pis
+# Stands For: Restart all Pis
 # Function:   Uses http command interface to instruct all pis to restart.
 # ==============================================================================
 i=1
