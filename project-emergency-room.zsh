@@ -10,7 +10,36 @@ alias er='~/Working/projects/emergency-room/'$ofFolder'/apps/myApps/emergencyroo
 i=1
 erSpiCmd=""
 while [ $i -le $numPis ]; do
-  erSpiCmd=$erSpiCmd"echo 'Syncing Emergency Room to "$ipMask$i"...' && sshpass -p '"$sshPhrase"' rsync -avzh --delete --exclude '.git' --exclude '.gitignore' --exclude '*.xcodeproj' --exclude 'openFrameworks-Info.plist' --exclude 'Project.xcconfig' --exclude '*.app' --exclude 'bin/data/AudioUnitPresets' --exclude 'bin/data/log' --exclude 'bin/data/test' --exclude '.DS_Store' --exclude 'obj' --exclude 'bin/emergencyroom' --exclude 'bin/readMe.txt' /Users/"$osxUser"/Working/projects/emergency-room/"$ofFolder"/apps/myApps/emergencyroom/ "$piUser"@"$ipMask$i":/home/"$piUser"/emergency-room/"$ofFolder"/apps/myApps/emergencyroom/ && sshpass -p '"$sshPhrase"' rsync -avzh --delete --exclude '.DS_Store' /Users/"$osxUser"/Working/projects/emergency-room/er-media/ "$piUser"@"$ipMask$i":/home/"$piUser"/emergency-room/er-media/ && echo '' && "
+  erSpiCmd=$erSpiCmd"echo 'Syncing Emergency Room to "$ipMask$i"...' "
+  erSpiCmd=$erSpiCmd"&& "
+  erSpiCmd=$erSpiCmd"sshpass -p '"$sshPhrase"' "
+  erSpiCmd=$erSpiCmd"rsync -avzh --delete "
+  erSpiCmd=$erSpiCmd"--exclude '.git' "
+  erSpiCmd=$erSpiCmd"--exclude '.gitignore' "
+  erSpiCmd=$erSpiCmd"--exclude '*.xcodeproj' "
+  erSpiCmd=$erSpiCmd"--exclude 'openFrameworks-Info.plist' "
+  erSpiCmd=$erSpiCmd"--exclude 'Project.xcconfig' "
+  erSpiCmd=$erSpiCmd"--exclude '*.app' "
+  erSpiCmd=$erSpiCmd"--exclude 'bin/data/AudioUnitPresets' "
+  erSpiCmd=$erSpiCmd"--exclude 'bin/data/log' "
+  erSpiCmd=$erSpiCmd"--exclude 'bin/data/test' "
+  erSpiCmd=$erSpiCmd"--exclude '.DS_Store' "
+  erSpiCmd=$erSpiCmd"--exclude 'obj' "
+  erSpiCmd=$erSpiCmd"--exclude 'bin/emergencyroom' "
+  erSpiCmd=$erSpiCmd"--exclude 'bin/readMe.txt' "
+  erSpiCmd=$erSpiCmd"/Users/"$osxUser"/Working/projects/emergency-room/"$ofFolder"/apps/myApps/emergencyroom/ "
+  erSpiCmd=$erSpiCmd$piUser"@"$ipMask$i":"
+  erSpiCmd=$erSpiCmd"/home/"$piUser"/emergency-room/"$ofFolder"/apps/myApps/emergencyroom/ "
+  erSpiCmd=$erSpiCmd"&& "
+  erSpiCmd=$erSpiCmd"sshpass -p '"$sshPhrase"' "
+  erSpiCmd=$erSpiCmd"rsync -avzh --delete "
+  erSpiCmd=$erSpiCmd"--exclude '.DS_Store' "
+  erSpiCmd=$erSpiCmd"/Users/"$osxUser"/Working/projects/emergency-room/er-media/ "
+  erSpiCmd=$erSpiCmd$piUser"@"$ipMask$i":"
+  erSpiCmd=$erSpiCmd"/home/"$piUser"/emergency-room/er-media/ "
+  erSpiCmd=$erSpiCmd"&& "
+  erSpiCmd=$erSpiCmd"echo '' "
+  erSpiCmd=$erSpiCmd"&& "
   i=`expr $i + 1`
 done
 
@@ -28,7 +57,12 @@ eval "alias spi=\""$erSpiCmd"\"" #echo "alias spi=\""$erSpiCmd"\""
 i=1
 erCpiCmd=""
 while [ $i -le $numPis ]; do
-  erCpiCmd=$erCpiCmd"echo 'Compiling Emergency Room on "$ipMask$i"...' && curl http://"$ipMask$i":"$port"/compileOF && echo '' && "
+  erCpiCmd=$erCpiCmd"echo 'Compiling Emergency Room on "$ipMask$i"...' "
+  erCpiCmd=$erCpiCmd"&& "
+  erCpiCmd=$erCpiCmd"curl http://"$ipMask$i":"$port"/compileOF "
+  erCpiCmd=$erCpiCmd"&& "
+  erCpiCmd=$erCpiCmd"echo '' "
+  erCpiCmd=$erCpiCmd"&& "
   i=`expr $i + 1`
 done
 
@@ -45,7 +79,12 @@ eval "alias cpi=\""$erCpiCmd"\"" #echo "alias cpi=\""$erCpiCmd"\""
 i=1
 erRpiCmd=""
 while [ $i -le $numPis ]; do
-  erRpiCmd=$erRpiCmd"echo 'Restarting "$ipMask$i"...' && curl http://"$ipMask$i":"$port"/stopOF && echo '' && "
+  erRpiCmd=$erRpiCmd"echo 'Restarting "$ipMask$i"...' "
+  erRpiCmd=$erRpiCmd"&& "
+  erRpiCmd=$erRpiCmd"curl http://"$ipMask$i":"$port"/stopOF "
+  erRpiCmd=$erRpiCmd"&& "
+  erRpiCmd=$erRpiCmd"echo '' "
+  erRpiCmd=$erRpiCmd"&& "
   i=`expr $i + 1`
 done
 
@@ -62,8 +101,11 @@ eval "alias rpi=\""$erRpiCmd"\"" #echo "alias rpi=\""$erRpiCmd"\""
 i=1
 erSshCmd=""
 while [ $i -le $numPis ]; do
-  erSshCmd="alias ssh"$i"=\"echo 'SSHing into "$ipMask$i"...' && sshpass -p '"$sshPhrase"' ssh -o StrictHostKeyChecking=no "$piUser"@"$ipMask$i"\""
-  eval $erSshCmd
-  #echo $erSshCmd
+  erSshCmd="echo 'SSHing into "$ipMask$i"...' "
+  erSshCmd=$erSshCmd"&& "
+  erSshCmd=$erSshCmd"sshpass -p '"$sshPhrase"' "
+  erSshCmd=$erSshCmd"ssh -o StrictHostKeyChecking=no "
+  erSshCmd=$erSshCmd$piUser"@"$ipMask$i
+  eval "alias ssh"$i"=\""$erSshCmd"\"" #echo "alias ssh"$i"=\""$erSshCmd"\""
   i=`expr $i + 1`
 done
