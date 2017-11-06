@@ -1,5 +1,9 @@
-alias er='~/Working/projects/emergency-room/'$ofFolder'/apps/myApps/emergencyroom'
-
+# ==============================================================================
+# Command:    er
+# Stands For: Go to project working dir
+# Function:   Just an alias to make changing directories easier
+# ==============================================================================
+create_alias "er" "cd ~/Working/projects/emergency-room/"$ofFolder"/apps/myApps/emergencyroom"
 
 # ==============================================================================
 # Command:    spi
@@ -7,45 +11,44 @@ alias er='~/Working/projects/emergency-room/'$ofFolder'/apps/myApps/emergencyroo
 # Function:   Uses rsync over ssh to clone compilation files and media assets to
 #             each pi, one at a time. Set n for number of pis to target.
 # ==============================================================================
-i=1
-erSpiCmd=""
+i=1; erCmd=""
+
 while [ $i -le $numPis ]; do
-  erSpiCmd=$erSpiCmd"echo 'Syncing Emergency Room to "$ipMask$i"...' "
-  erSpiCmd=$erSpiCmd"&& "
-  erSpiCmd=$erSpiCmd"sshpass -p '"$sshPhrase"' "
-  erSpiCmd=$erSpiCmd"rsync -avzh --delete "
-  erSpiCmd=$erSpiCmd"--exclude '.git' "
-  erSpiCmd=$erSpiCmd"--exclude '.gitignore' "
-  erSpiCmd=$erSpiCmd"--exclude '*.xcodeproj' "
-  erSpiCmd=$erSpiCmd"--exclude 'openFrameworks-Info.plist' "
-  erSpiCmd=$erSpiCmd"--exclude 'Project.xcconfig' "
-  erSpiCmd=$erSpiCmd"--exclude '*.app' "
-  erSpiCmd=$erSpiCmd"--exclude 'bin/data/AudioUnitPresets' "
-  erSpiCmd=$erSpiCmd"--exclude 'bin/data/log' "
-  erSpiCmd=$erSpiCmd"--exclude 'bin/data/test' "
-  erSpiCmd=$erSpiCmd"--exclude '.DS_Store' "
-  erSpiCmd=$erSpiCmd"--exclude 'obj' "
-  erSpiCmd=$erSpiCmd"--exclude 'bin/emergencyroom' "
-  erSpiCmd=$erSpiCmd"--exclude 'bin/readMe.txt' "
-  erSpiCmd=$erSpiCmd"/Users/"$osxUser"/Working/projects/emergency-room/"$ofFolder"/apps/myApps/emergencyroom/ "
-  erSpiCmd=$erSpiCmd$piUser"@"$ipMask$i":"
-  erSpiCmd=$erSpiCmd"/home/"$piUser"/emergency-room/"$ofFolder"/apps/myApps/emergencyroom/ "
-  erSpiCmd=$erSpiCmd"&& "
-  erSpiCmd=$erSpiCmd"sshpass -p '"$sshPhrase"' "
-  erSpiCmd=$erSpiCmd"rsync -avzh --delete "
-  erSpiCmd=$erSpiCmd"--exclude '.DS_Store' "
-  erSpiCmd=$erSpiCmd"/Users/"$osxUser"/Working/projects/emergency-room/er-media/ "
-  erSpiCmd=$erSpiCmd$piUser"@"$ipMask$i":"
-  erSpiCmd=$erSpiCmd"/home/"$piUser"/emergency-room/er-media/ "
-  erSpiCmd=$erSpiCmd"&& "
-  erSpiCmd=$erSpiCmd"echo '' "
-  erSpiCmd=$erSpiCmd"&& "
+  erCmd=$erCmd"echo 'Syncing Emergency Room to "$ipMask$i"...' "
+  erCmd=$erCmd"&& "
+  erCmd=$erCmd"sshpass -p '"$sshPhrase"' "
+  erCmd=$erCmd"rsync -avzh --delete "
+  erCmd=$erCmd"--exclude '.git' "
+  erCmd=$erCmd"--exclude '.gitignore' "
+  erCmd=$erCmd"--exclude '*.xcodeproj' "
+  erCmd=$erCmd"--exclude 'openFrameworks-Info.plist' "
+  erCmd=$erCmd"--exclude 'Project.xcconfig' "
+  erCmd=$erCmd"--exclude '*.app' "
+  erCmd=$erCmd"--exclude 'bin/data/AudioUnitPresets' "
+  erCmd=$erCmd"--exclude 'bin/data/log' "
+  erCmd=$erCmd"--exclude 'bin/data/test' "
+  erCmd=$erCmd"--exclude '.DS_Store' "
+  erCmd=$erCmd"--exclude 'obj' "
+  erCmd=$erCmd"--exclude 'bin/emergencyroom' "
+  erCmd=$erCmd"--exclude 'bin/readMe.txt' "
+  erCmd=$erCmd"/Users/"$osxUser"/Working/projects/emergency-room/"$ofFolder"/apps/myApps/emergencyroom/ "
+  erCmd=$erCmd$piUser"@"$ipMask$i":"
+  erCmd=$erCmd"/home/"$piUser"/emergency-room/"$ofFolder"/apps/myApps/emergencyroom/ "
+  erCmd=$erCmd"&& "
+  erCmd=$erCmd"sshpass -p '"$sshPhrase"' "
+  erCmd=$erCmd"rsync -avzh --delete "
+  erCmd=$erCmd"--exclude '.DS_Store' "
+  erCmd=$erCmd"/Users/"$osxUser"/Working/projects/emergency-room/er-media/ "
+  erCmd=$erCmd$piUser"@"$ipMask$i":"
+  erCmd=$erCmd"/home/"$piUser"/emergency-room/er-media/ "
+  erCmd=$erCmd"&& "
+  erCmd=$erCmd"echo '' "
+  erCmd=$erCmd"&& "
   i=`expr $i + 1`
 done
 
-erSpiCmd=$erSpiCmd"echo 'Done.'"
-
-eval "alias spi=\""$erSpiCmd"\"" #echo "alias spi=\""$erSpiCmd"\""
+erCmd=$erCmd"echo 'Done.'"
+create_alias "spi" $erCmd
 
 
 # ==============================================================================
@@ -54,21 +57,20 @@ eval "alias spi=\""$erSpiCmd"\"" #echo "alias spi=\""$erSpiCmd"\""
 # Function:   Uses http command interface to instruct all pis to begin
 #             compilation.
 # ==============================================================================
-i=1
-erCpiCmd=""
+i=1; erCmd=""
+
 while [ $i -le $numPis ]; do
-  erCpiCmd=$erCpiCmd"echo 'Compiling Emergency Room on "$ipMask$i"...' "
-  erCpiCmd=$erCpiCmd"&& "
-  erCpiCmd=$erCpiCmd"curl http://"$ipMask$i":"$port"/compileOF "
-  erCpiCmd=$erCpiCmd"&& "
-  erCpiCmd=$erCpiCmd"echo '' "
-  erCpiCmd=$erCpiCmd"&& "
+  erCmd=$erCmd"echo 'Compiling Emergency Room on "$ipMask$i"...' "
+  erCmd=$erCmd"&& "
+  erCmd=$erCmd"curl http://"$ipMask$i":"$port"/compileOF "
+  erCmd=$erCmd"&& "
+  erCmd=$erCmd"echo '' "
+  erCmd=$erCmd"&& "
   i=`expr $i + 1`
 done
 
-erCpiCmd=$erCpiCmd"echo 'Done.'"
-
-eval "alias cpi=\""$erCpiCmd"\"" #echo "alias cpi=\""$erCpiCmd"\""
+erCmd=$erCmd"echo 'Done.'"
+create_alias "cpi" $erCmd
 
 
 # ==============================================================================
@@ -77,20 +79,19 @@ eval "alias cpi=\""$erCpiCmd"\"" #echo "alias cpi=\""$erCpiCmd"\""
 # Function:   Uses http command interface to instruct all pis to restart.
 # ==============================================================================
 i=1
-erRpiCmd=""
+erCmd=""
 while [ $i -le $numPis ]; do
-  erRpiCmd=$erRpiCmd"echo 'Restarting "$ipMask$i"...' "
-  erRpiCmd=$erRpiCmd"&& "
-  erRpiCmd=$erRpiCmd"curl http://"$ipMask$i":"$port"/stopOF "
-  erRpiCmd=$erRpiCmd"&& "
-  erRpiCmd=$erRpiCmd"echo '' "
-  erRpiCmd=$erRpiCmd"&& "
+  erCmd=$erCmd"echo 'Restarting "$ipMask$i"...' "
+  erCmd=$erCmd"&& "
+  erCmd=$erCmd"curl http://"$ipMask$i":"$port"/stopOF "
+  erCmd=$erCmd"&& "
+  erCmd=$erCmd"echo '' "
+  erCmd=$erCmd"&& "
   i=`expr $i + 1`
 done
 
-erRpiCmd=$erRpiCmd"echo 'Done.'"
-
-eval "alias rpi=\""$erRpiCmd"\"" #echo "alias rpi=\""$erRpiCmd"\""
+erCmd=$erCmd"echo 'Done.'"
+create_alias "rpi" $erCmd
 
 
 # ==============================================================================
@@ -99,13 +100,14 @@ eval "alias rpi=\""$erRpiCmd"\"" #echo "alias rpi=\""$erRpiCmd"\""
 # Function:   Quickly open a shell on a specific pi over SSH.
 # ==============================================================================
 i=1
-erSshCmd=""
+erCmd=""
 while [ $i -le $numPis ]; do
-  erSshCmd="echo 'SSHing into "$ipMask$i"...' "
-  erSshCmd=$erSshCmd"&& "
-  erSshCmd=$erSshCmd"sshpass -p '"$sshPhrase"' "
-  erSshCmd=$erSshCmd"ssh -o StrictHostKeyChecking=no "
-  erSshCmd=$erSshCmd$piUser"@"$ipMask$i
-  eval "alias ssh"$i"=\""$erSshCmd"\"" #echo "alias ssh"$i"=\""$erSshCmd"\""
+  erCmd="echo 'SSHing into "$ipMask$i"...' "
+  erCmd=$erCmd"&& "
+  erCmd=$erCmd"sshpass -p '"$sshPhrase"' "
+  erCmd=$erCmd"ssh -o StrictHostKeyChecking=no "
+  erCmd=$erCmd$piUser"@"$ipMask$i
+
+  create_alias "ssh"$i $erCmd
   i=`expr $i + 1`
 done

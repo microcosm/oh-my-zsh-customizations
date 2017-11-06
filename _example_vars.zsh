@@ -6,6 +6,7 @@
 # This example file gives an indication of what values are
 # expected:
 
+# testMode=false
 # ofFolder='of097'
 # ipMask='192.168.1.10' #(the final character is missing from the mask)
 # port='1002'
