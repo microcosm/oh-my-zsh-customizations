@@ -7,6 +7,8 @@ alias aah='~/Working/sites/artahack.io'
 alias twa='~/Working/sites/thoughtworksarts.io'
 alias jah='~/Working/sites/jahya.net'
 
+alias zc='~/.oh-my-zsh/custom'
+
 alias grs='grunt serve'
 alias grd='grunt deploy'
 alias grb='grunt build:dist'
