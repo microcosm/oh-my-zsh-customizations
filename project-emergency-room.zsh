@@ -5,6 +5,7 @@
 # ==============================================================================
 create_alias "er" "cd ~/Working/projects/emergency-room/"$ofFolder"/apps/myApps/emergencyroom"
 
+
 # ==============================================================================
 # Command:    spi
 # Stands For: Sync to all Pis
@@ -15,26 +16,44 @@ i=1; erCmd=""
 
 while [ $i -le $numPis ]; do
   erCmd=$erCmd"echo 'Syncing Emergency Room to "$ipMask$i"...' "
-  erCmd=$erCmd"&& "
+  erCmd=$erCmd"&& echo '' && "
+
+  erCmd=$erCmd"echo 'Syncing projects...' && "
+  erCmd=$erCmd"echo '-------------------' && "
   erCmd=$erCmd"sshpass -p '"$sshPhrase"' "
   erCmd=$erCmd"rsync -avzh --delete "
+  erCmd=$erCmd"--exclude '.DS_Store' "
   erCmd=$erCmd"--exclude '.git' "
   erCmd=$erCmd"--exclude '.gitignore' "
-  erCmd=$erCmd"--exclude '*.xcodeproj' "
-  erCmd=$erCmd"--exclude 'openFrameworks-Info.plist' "
-  erCmd=$erCmd"--exclude 'Project.xcconfig' "
-  erCmd=$erCmd"--exclude '*.app' "
-  erCmd=$erCmd"--exclude 'bin/data/AudioUnitPresets' "
-  erCmd=$erCmd"--exclude 'bin/data/log' "
-  erCmd=$erCmd"--exclude 'bin/data/test' "
-  erCmd=$erCmd"--exclude '.DS_Store' "
-  erCmd=$erCmd"--exclude 'obj' "
-  erCmd=$erCmd"--exclude 'bin/emergencyroom' "
-  erCmd=$erCmd"--exclude 'bin/readMe.txt' "
+  erCmd=$erCmd"--exclude 'emergencyroom/*.xcodeproj' "
+  erCmd=$erCmd"--exclude 'emergencyroom/openFrameworks-Info.plist' "
+  erCmd=$erCmd"--exclude 'emergencyroom/Project.xcconfig' "
+  erCmd=$erCmd"--exclude 'emergencyroom/*.app' "
+  erCmd=$erCmd"--exclude 'emergencyroom/obj' "
+  erCmd=$erCmd"--exclude 'emergencyroom/bin/emergencyroom' "
+  erCmd=$erCmd"--exclude 'emergencyroom/bin/readMe.txt' "
+  erCmd=$erCmd"--exclude 'emergencyroom/bin/data/AudioUnitPresets' "
+  erCmd=$erCmd"--exclude 'emergencyroom/bin/data/log' "
+  erCmd=$erCmd"--exclude 'emergencyroom/bin/data/test' "
   erCmd=$erCmd"/Users/"$osxUser"/Working/projects/emergency-room/"$ofFolder"/apps/myApps/ "
   erCmd=$erCmd$piUser"@"$ipMask$i":"
   erCmd=$erCmd"/home/"$piUser"/emergency-room/"$ofFolder"/apps/myApps/ "
-  erCmd=$erCmd"&& "
+  erCmd=$erCmd"&& echo '' && "
+
+  erCmd=$erCmd"echo 'Syncing addons...' && "
+  erCmd=$erCmd"echo '-----------------' && "
+  erCmd=$erCmd"sshpass -p '"$sshPhrase"' "
+  erCmd=$erCmd"rsync -avzh --delete " #--delete-excluded
+  erCmd=$erCmd"--exclude '.DS_Store' "
+  erCmd=$erCmd"--exclude '.git' "
+  erCmd=$erCmd"--exclude '.gitignore' "
+  erCmd=$erCmd"/Users/"$osxUser"/Working/projects/emergency-room/"$ofFolder"/addons/ "
+  erCmd=$erCmd$piUser"@"$ipMask$i":"
+  erCmd=$erCmd"/home/"$piUser"/emergency-room/"$ofFolder"/addons/ "
+  erCmd=$erCmd"&& echo '' && "
+
+  erCmd=$erCmd"echo 'Syncing media...' && "
+  erCmd=$erCmd"echo '----------------' && "
   erCmd=$erCmd"sshpass -p '"$sshPhrase"' "
   erCmd=$erCmd"rsync -avzh --delete "
   erCmd=$erCmd"--exclude '.DS_Store' "
