@@ -47,6 +47,7 @@ while [ $i -le $numPis ]; do
   erCmd=$erCmd"--exclude '.DS_Store' "
   erCmd=$erCmd"--exclude '.git' "
   erCmd=$erCmd"--exclude '.gitignore' "
+  erCmd=$erCmd"--exclude 'obj' "
   erCmd=$erCmd"/Users/"$osxUser"/Working/projects/emergency-room/"$ofFolder"/addons/ "
   erCmd=$erCmd$piUser"@"$ipMask$i":"
   erCmd=$erCmd"/home/"$piUser"/emergency-room/"$ofFolder"/addons/ "
