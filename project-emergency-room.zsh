@@ -100,7 +100,7 @@ erCmd=""
 while [ $i -le $numPis ]; do
   erCmd="echo 'SSHing into "$ipMask$i"...' "
   erCmd=$erCmd"&& "
-  erCmd=$erCmd"sshpass -p '"$sshPhrase"' "
+  erCmd=$erCmd"sshpass -p '"$piPass"' "
   erCmd=$erCmd"ssh -o StrictHostKeyChecking=no "
   erCmd=$erCmd$piUser"@"$ipMask$i
 
