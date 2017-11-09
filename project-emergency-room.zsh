@@ -35,16 +35,19 @@ create_alias "spi" $erCmd
 # Command:    smm
 # Stands For: Sync to Mac Mini (server)
 # Function:   Uses rsync over ssh to clone compilation files and media assets to
-#             the OSX server.
+#             the OSX server. Only valid when used from dev machine.
 # ==============================================================================
-erCmd=""
-erCmd=$erCmd"echo 'Syncing Emergency Room to "$ipMask"0 (Mac Mini)...' "
-erCmd=$erCmd"&& echo '' && "
+if [ "$mmUser" != "" ]
+then
+  erCmd=""
+  erCmd=$erCmd"echo 'Syncing Emergency Room to "$ipMask"0 (Mac Mini)...' "
+  erCmd=$erCmd"&& echo '' && "
 
-erCmd=$erCmd$(sync_er "/Users/"$devUser"/Working/projects" $ipMask"0" "/Users/"$mmUser"/Working/projects" $mmUser $mmPass)
-erCmd=$erCmd"&& echo '' && echo 'Done.'"
+  erCmd=$erCmd$(sync_er "/Users/"$devUser"/Working/projects" $ipMask"0" "/Users/"$mmUser"/Working/projects" $mmUser $mmPass)
+  erCmd=$erCmd"&& echo '' && echo 'Done.'"
 
-create_alias "smm" $erCmd
+  create_alias "smm" $erCmd
+fi
 
 
 # ==============================================================================
