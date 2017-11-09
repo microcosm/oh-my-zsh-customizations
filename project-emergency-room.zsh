@@ -18,57 +18,33 @@ while [ $i -le $numPis ]; do
   erCmd=$erCmd"echo 'Syncing Emergency Room to "$ipMask$i"...' "
   erCmd=$erCmd"&& echo '' && "
 
-  erCmd=$erCmd"echo 'Syncing projects...' && "
-  erCmd=$erCmd"echo '-------------------' && "
-  erCmd=$erCmd"sshpass -p '"$sshPhrase"' "
-  erCmd=$erCmd"rsync -avzh --delete "
-  erCmd=$erCmd"--exclude '.DS_Store' "
-  erCmd=$erCmd"--exclude '.git' "
-  erCmd=$erCmd"--exclude '.gitignore' "
-  erCmd=$erCmd"--exclude 'emergencyroom/*.xcodeproj' "
-  erCmd=$erCmd"--exclude 'emergencyroom/openFrameworks-Info.plist' "
-  erCmd=$erCmd"--exclude 'emergencyroom/Project.xcconfig' "
-  erCmd=$erCmd"--exclude 'emergencyroom/obj' "
-  erCmd=$erCmd"--exclude 'emergencyroom/bin/*.app' "
-  erCmd=$erCmd"--exclude 'emergencyroom/bin/emergencyroom' "
-  erCmd=$erCmd"--exclude 'emergencyroom/bin/readMe.txt' "
-  erCmd=$erCmd"--exclude 'emergencyroom/bin/data/AudioUnitPresets' "
-  erCmd=$erCmd"--exclude 'emergencyroom/bin/data/log' "
-  erCmd=$erCmd"--exclude 'emergencyroom/bin/data/test' "
-  erCmd=$erCmd"/Users/"$osxUser"/Working/projects/emergency-room/"$ofFolder"/apps/myApps/ "
-  erCmd=$erCmd$piUser"@"$ipMask$i":"
-  erCmd=$erCmd"/home/"$piUser"/emergency-room/"$ofFolder"/apps/myApps/ "
-  erCmd=$erCmd"&& echo '' && "
+  erCmd=$erCmd$(sync_er "/Users/"$devUser"/Working/projects" $ipMask$i "/home/"$piUser $piUser $piPass)
 
-  erCmd=$erCmd"echo 'Syncing addons...' && "
-  erCmd=$erCmd"echo '-----------------' && "
-  erCmd=$erCmd"sshpass -p '"$sshPhrase"' "
-  erCmd=$erCmd"rsync -avzh --delete " #--delete-excluded
-  erCmd=$erCmd"--exclude '.DS_Store' "
-  erCmd=$erCmd"--exclude '.git' "
-  erCmd=$erCmd"--exclude '.gitignore' "
-  erCmd=$erCmd"--exclude 'obj' "
-  erCmd=$erCmd"/Users/"$osxUser"/Working/projects/emergency-room/"$ofFolder"/addons/ "
-  erCmd=$erCmd$piUser"@"$ipMask$i":"
-  erCmd=$erCmd"/home/"$piUser"/emergency-room/"$ofFolder"/addons/ "
-  erCmd=$erCmd"&& echo '' && "
-
-  erCmd=$erCmd"echo 'Syncing media...' && "
-  erCmd=$erCmd"echo '----------------' && "
-  erCmd=$erCmd"sshpass -p '"$sshPhrase"' "
-  erCmd=$erCmd"rsync -avzh --delete "
-  erCmd=$erCmd"--exclude '.DS_Store' "
-  erCmd=$erCmd"/Users/"$osxUser"/Working/projects/emergency-room/er-media/ "
-  erCmd=$erCmd$piUser"@"$ipMask$i":"
-  erCmd=$erCmd"/home/"$piUser"/emergency-room/er-media/ "
   erCmd=$erCmd"&& "
   erCmd=$erCmd"echo '' "
   erCmd=$erCmd"&& "
+
   i=`expr $i + 1`
 done
 
 erCmd=$erCmd"echo 'Done.'"
 create_alias "spi" $erCmd
+
+
+# ==============================================================================
+# Command:    smm
+# Stands For: Sync to Mac Mini (server)
+# Function:   Uses rsync over ssh to clone compilation files and media assets to
+#             the OSX server.
+# ==============================================================================
+erCmd=""
+erCmd=$erCmd"echo 'Syncing Emergency Room to "$ipMask"0 (Mac Mini)...' "
+erCmd=$erCmd"&& echo '' && "
+
+erCmd=$erCmd$(sync_er "/Users/"$devUser"/Working/projects" $ipMask"0" "/Users/"$mmUser"/Working/projects" $mmUser $mmPass)
+erCmd=$erCmd"&& echo '' && echo 'Done.'"
+
+create_alias "smm" $erCmd
 
 
 # ==============================================================================

@@ -6,11 +6,13 @@
 # This example file gives an indication of what values are
 # expected:
 
-# testMode=false
+# testMode=true
+# numPis=5
 # ofFolder='of097'
 # ipMask='192.168.1.10' #(the final character is missing from the mask)
 # port='1002'
-# sshPhrase='mypassword'
-# osxUser='myusername'
-# piUser='piusername'
-# numPis=5
+# piUser='myusername'
+# piPass='mypassword'
+# mmUser='myusername'
+# mmPass='mypassword'
+# devUser='myusername'
