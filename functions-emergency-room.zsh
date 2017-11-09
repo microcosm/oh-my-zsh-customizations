@@ -26,7 +26,8 @@ sync_er () {
     #Don't overwrite pi extras
     syncCmd=$syncCmd"--exclude 'emergencyroom/obj' "
     syncCmd=$syncCmd"--exclude 'emergencyroom/bin/readMe.txt' "
-    #Don't copy test content
+    #Don't send server-specific content
+    syncCmd=$syncCmd"--exclude 'emergencyroom/bin/data/AudioUnitPresets' "
     syncCmd=$syncCmd"--exclude 'emergencyroom/bin/data/test' "
   else
     #Do send mac extras but leave user workspaces intact
