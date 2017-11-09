@@ -1,5 +1,5 @@
 create_alias () {
-	if [ $testMode == 'true' ]
+	if [ $testMode = true ]
 	then
 	  echo "alias "$1"=\""$2"\""
 	else
