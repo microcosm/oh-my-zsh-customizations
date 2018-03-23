@@ -13,3 +13,5 @@ alias grs='grunt serve'
 alias grd='grunt deploy'
 alias grb='grunt build:dist'
 alias grdh='grunt build:dist && (cd ../webpreview_heroku/ && find . ! -path "./.git/*" ! -name .git ! -name config.ru ! -name Gemfile ! -name Gemfile.lock -delete) && cp -R dist/* ../webpreview_heroku && (cd ../webpreview_heroku/ && ls -la && git add --all && git commit -m "Deploying" && git push)'
+
+alias p8='ping 8.8.8.8'
