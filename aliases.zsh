@@ -7,6 +7,7 @@ alias aah='~/Working/sites/artahack.io'
 alias twa='~/Working/sites/thoughtworksarts.io'
 alias jah='~/Working/sites/jahya.net'
 
+alias z='~/.oh-my-zsh'
 alias zc='~/.oh-my-zsh/custom'
 alias zca='vi ~/.oh-my-zsh/custom/aliases.zsh'
 
