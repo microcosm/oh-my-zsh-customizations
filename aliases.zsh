@@ -12,10 +12,10 @@ alias zc='~/.oh-my-zsh/custom'
 alias zca='vi ~/.oh-my-zsh/custom/aliases.zsh'
 
 alias bu="buw && bul && bum && bug"
-alias buw="rsync -avzh /Volumes/Lizard\ Man/Working/* /Volumes/Meka\ Dragon/Working/"
-alias bul="rsync -avzh /Volumes/Lizard\ Man/Libraries/* /Volumes/Meka\ Dragon/Libraries/"
-alias bum="rsync -avzh /Volumes/Lizard\ Man/Media/* /Volumes/Meka\ Dragon/Media/"
-alias bug="rsync -avzh /Volumes/Lizard\ Man/Games/* /Volumes/Meka\ Dragon/Games/"
+alias buw="rsync -avzh /Volumes/Lizard\ Man/Working/* /Volumes/Meka\ Dragon/folder-backups/Working/"
+alias bul="rsync -avzh /Volumes/Lizard\ Man/Libraries/* /Volumes/Meka\ Dragon/folder-backups/Libraries/"
+alias bum="rsync -avzh /Volumes/Lizard\ Man/Media/* /Volumes/Meka\ Dragon/folder-backups/Media/"
+alias bug="rsync -avzh /Volumes/Lizard\ Man/Games/* /Volumes/Meka\ Dragon/folder-backups/Games/"
 
 alias grs='grunt serve'
 alias grd='grunt deploy'
