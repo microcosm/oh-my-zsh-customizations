@@ -1,4 +1,5 @@
 alias re='~/Repos'
+alias en='~/Repos/envs'
 alias si='~/Repos/sites'
 alias pr='~/Repos/projects'
 alias sp='~/Repos/sketchpad'
