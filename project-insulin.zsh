@@ -1,1 +1,0 @@
-alias in='~/Working/projects/insulin/'$ofFolder'/apps/myApps/insulin'
