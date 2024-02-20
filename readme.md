@@ -3,3 +3,4 @@ Instructions for new system (**Warning** this is destructive to the `custom` fol
 - `rm -rf ~/.oh-my-zsh/custom && mkdir !$ && cd !$`
 - `git clone git@github.com:microcosm/oh-my-zsh-customizations.git .`
 - Modify the theme to Powerlevel10k if desired (see above URL)
+- `. ~/.zshrc`
