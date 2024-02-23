@@ -2,6 +2,8 @@ alias aah='~/Repos/artahack.io'
 alias ja='~/Repos/jahya.net'
 alias re='~/Repos/'
 
+alias dp='git checkout source && git checkout -b deploy && git push -f --set-upstream origin deploy && git checkout source && git branch --delete deploy'
+
 alias zc="~/.oh-my-zsh/custom"
 alias sz=". ~/.zshrc"
 
