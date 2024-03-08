@@ -2,7 +2,7 @@ alias aah='~/Repos/artahack.io'
 alias ja='~/Repos/jahya.net'
 alias re='~/Repos/'
 
-alias dp='git checkout source && git checkout -b deploy && git push -f --set-upstream origin deploy && git checkout source && git branch --delete deploy'
+alias dp="echo '===> Deploy initiated.\n===> Checking out source...' && git checkout source && echo '===> Creating deploy branch...' && git checkout -b deploy && echo '===> Pushing to remote...' && git push -f --set-upstream origin deploy && echo '===> Cleaning up...' && git checkout source && git branch --delete deploy && echo '===> Deploy complete.'"
 
 alias zc='~/.oh-my-zsh/custom'
 alias sz=". ~/.zshrc"
