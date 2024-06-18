@@ -4,3 +4,14 @@ Instructions for new system (**Warning** this is destructive to the `custom` fol
 - `git clone git@github.com:microcosm/oh-my-zsh-customizations.git .`
 - Modify the theme to Powerlevel10k if desired (see above URL)
 - `. ~/.zshrc`
+
+Other new system tips:
+- Modify the keybindings for home/end - save this to `~/Library/KeyBindings/DefaultKeyBinding.dict` and restart apps:
+```
+{
+    "\UF729"  = "moveToBeginningOfLine:";
+    "\UF72B"  = "moveToEndOfLine:";
+    "$\UF729" = "moveToBeginningOfLineAndModifySelection:";
+    "$\UF72B" = "moveToEndOfLineAndModifySelection:";
+}
+```
